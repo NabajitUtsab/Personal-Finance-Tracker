@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
-public class FinanceTrackerModel {
+public class Transaction {
 
     private Long id;
     private String title;
