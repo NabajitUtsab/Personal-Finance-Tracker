@@ -15,25 +15,21 @@ public class TransactionsController {
     List<Transaction> transactionList = new ArrayList<>();
     Long nextId = 1L;
 
-//    @GetMapping
-//    public List<FinanceTrackerModel> getFinanceTrackerModelList() {
-//        return financeTrackerModelList;
-//    }
 
     @GetMapping("/{id}")
-    public Optional<Transaction> getFinanceTrackerModel(@PathVariable Long id) {
+    public Optional<Transaction> getTransaction(@PathVariable Long id) {
         return transactionList.stream()
                 .filter(t -> t.getId().equals(id)).findFirst();
     }
 
     @DeleteMapping("/{id}")
-    public String deleteFinanceTrackerModel(@PathVariable Long id) {
+    public String deleteTransaction(@PathVariable Long id) {
         transactionList.removeIf(t -> t.getId().equals(id));
         return "Deleted";
     }
 
     @PostMapping
-    public String saveFinanceTrackerModel(@RequestBody Transaction transaction) {
+    public String addTransaction(@RequestBody Transaction transaction) {
         transaction.setId(nextId++);
         transactionList.add(transaction);
         return "Saved";
@@ -41,7 +37,7 @@ public class TransactionsController {
 
 
     @GetMapping
-    public List<Transaction> getFinanceTrackerModelByType(
+    public List<Transaction> getAllTransactions(
             @RequestParam(required = false) String type) {
 
         if (type == null) {
